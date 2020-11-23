@@ -2,13 +2,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
-class Schema(models.Model):
+class NewSchema(models.Model):
     """
     Model representing schema parameters.
     """
-    schema_name = models.TextField(
+    schema_name = models.CharField(
         'Schema name',
-        max_length=50,
+        max_length=100,
         blank=False,
     )
 
@@ -34,55 +34,63 @@ class Schema(models.Model):
     )
 
 
-class DataType(models.Model):
+class SchemaColumn(models.Model):
     """
     Model representing types of data.
     """
-    first_name = models.TextField(
-        'First name',
-        max_length=250,
-        help_text='Name',
+    column_name = models.CharField(
+        max_length=20,
+        null=True,
     )
-    last_name = models.TextField(
+    TYPE = (
+        ('JOB', 'Job'),
+        ('EMAIL', 'Email'),
+    )
+    type = models.CharField(
+        max_length=12,
+        choices=TYPE,
+        null=True,
+    )
+
+    first_name = models.CharField(
+        'First name',
+        max_length=50,
+    )
+    last_name = models.CharField(
         'Last name',
-        max_length=250,
-        help_text='Name',
+        max_length=50,
     )
     job = models.CharField(
         'Job',
-        max_length=250,
-        help_text='Job role',
+        max_length=50,
     )
     email = models.EmailField(
         'Email',
-        help_text='Email',
     )
     domain_name = models.CharField(
         'Domain',
         max_length=10,
-        help_text='Domain',
     )
     phone_number = models.CharField(
         'Phone',
         max_length=15,
-        help_text='Phone number',
     )
     company_name = models.CharField(
         'Company',
-        max_length=250,
-        help_text='Company',
+        max_length=100,
     )
     text = models.TextField()
     integer = models.IntegerField(
         default=18,
-        validators=[MaxValueValidator(18), MinValueValidator(60)]
+        validators=[MaxValueValidator(60), MinValueValidator(18)]
     )
     address = models.CharField(
         'Address',
-        max_length=250,
-        help_text='Address',
+        max_length=150,
     )
-    date = models.DateField()
+    date = models.DateField(
+        auto_now=True,
+    )
 
     @property
     def fullname(self):

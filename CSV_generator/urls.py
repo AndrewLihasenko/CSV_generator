@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('healthcheck/', health_check, name='healthcheck'),
     path('account/', include('django.contrib.auth.urls')),
+    # path('schema/', include('schema.urls')),
 ]

@@ -1,5 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.utils.html import format_html, format_html_join
 
 
 class NewSchema(models.Model):
@@ -91,6 +92,13 @@ class SchemaColumn(models.Model):
     date = models.DateField(
         auto_now=True,
     )
+
+    def drop_down_list(self):
+        return format_html(
+            '<select size="3" multiple name="hero[]">{} {}</select>',
+            self.address,
+            self.date,
+        )
 
     @property
     def fullname(self):

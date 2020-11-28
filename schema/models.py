@@ -43,15 +43,15 @@ class SchemaColumn(models.Model):
         max_length=20,
         null=True,
     )
-    TYPE = (
-        ('JOB', 'Job'),
-        ('EMAIL', 'Email'),
-    )
-    type = models.CharField(
-        max_length=12,
-        choices=TYPE,
-        null=True,
-    )
+    # TYPE = (
+    #     ('JOB', 'Job'),
+    #     ('EMAIL', 'Email'),
+    # )
+    # type = models.CharField(
+    #     max_length=12,
+    #     choices=TYPE,
+    #     null=True,
+    # )
 
     first_name = models.CharField(
         'First name',
@@ -93,12 +93,6 @@ class SchemaColumn(models.Model):
         auto_now=True,
     )
 
-    def drop_down_list(self):
-        return format_html(
-            '<select size="3" multiple name="hero[]">{} {}</select>',
-            self.address,
-            self.date,
-        )
 
     @property
     def fullname(self):

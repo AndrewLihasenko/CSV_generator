@@ -6,20 +6,24 @@ from .models import NewSchema, SchemaColumn
 
 
 admin.site.register(NewSchema)
-# admin.site.register(SchemaColumn)
 
 
 @admin.register(SchemaColumn)
 class SchemaColumnAdmin(admin.ModelAdmin):
+    # fields = (('job', 'email'), 'phone_number')
+    # exclude = ('phone_number',)
     # list_display = ('column_name', 'drop_down_list')
-    # fields = [('column_name', 'drop_down_list')]
+    list_display = ('job', 'email', 'phone_number')
+    fields = [('column_name', 'drop_down_list')]
+
+    # radio_fields = {"group": admin.VERTICAL}
 
     readonly_fields = ('drop_down_list',)
-    fieldsets = (
-        ('Основная информация', {
-            'fields': [('column_name', 'drop_down_list',)],
-        }),
-    )
+    # fieldsets = (
+    #     ('Основная информация', {
+    #         'fields': [('column_name', 'drop_down_list',)],
+    #     }),
+    # )
 
     def drop_down_list(self, instance):
         return format_html(

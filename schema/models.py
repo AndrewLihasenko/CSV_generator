@@ -93,6 +93,12 @@ class SchemaColumn(models.Model):
         auto_now=True,
     )
 
+    # Need to refactoring
+    # rate_type = models.CharField(
+    #     _('Rate type'),
+    #     max_length=20,
+    #     choices=RATE_TYPES.items(),
+    #     help_text=_('.....')
 
     @property
     def fullname(self):

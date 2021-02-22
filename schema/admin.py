@@ -10,11 +10,11 @@ admin.site.register(NewSchema)
 
 @admin.register(SchemaColumn)
 class SchemaColumnAdmin(admin.ModelAdmin):
-    # fields = (('job', 'email'), 'phone_number')
+    fields = (('job', 'email'), 'phone_number', ('column_name', 'type', ))
     # exclude = ('phone_number',)
     # list_display = ('column_name', 'drop_down_list')
     list_display = ('job', 'email', 'phone_number')
-    fields = [('column_name', 'drop_down_list')]
+    # fields = [('column_name', 'drop_down_list')]
 
     # radio_fields = {"group": admin.VERTICAL}
 

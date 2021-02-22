@@ -89,16 +89,30 @@ class SchemaColumn(models.Model):
         'Address',
         max_length=150,
     )
-    date = models.DateField(
-        auto_now=True,
+    date = models.DateField(auto_now_add=True)
+
+    # TODO: need refactoring
+    # order = models.AutoField(
+    #     primary_key=True,
+    #     # null=False,
+    # )
+
+    TYPE = (
+        (job, 'Job'),
+        (email, 'Email'),
+        (domain_name, 'Domain Name'),
+        (phone_number, 'Phone Number'),
+        (company_name, 'Company Name'),
+        (integer, 'Age'),
+        (address, 'Address'),
+        (date, 'Date'),
     )
 
-    # Need to refactoring
-    # rate_type = models.CharField(
-    #     _('Rate type'),
-    #     max_length=20,
-    #     choices=RATE_TYPES.items(),
-    #     help_text=_('.....')
+    type = models.CharField(
+        max_length=20,
+        choices=TYPE,
+        null=True,
+    )
 
     @property
     def fullname(self):
